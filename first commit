@@ -1,0 +1,110 @@
+
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>PineApple Computers</title>
+    </head>
+
+<body>
+<header height="60">
+  <div class="logo-container" color="gray" width="60" height="60">
+      <a class="logo-container" href="index.php">
+        <img
+          src="./img/pine2.png"
+          class="img-bot"
+          alt="logo"
+          width="60"
+          height="60"
+        />
+        <img
+          src="./img/pine4.png"
+          class="img-top"
+          alt="logo"
+          width="60"
+          height="60"
+        />
+      </a>
+    </div>
+    <div class="logo-text" color="gray" width="80" height="80">
+      <a href="index.php" style="text-decoration:none; color: white;">PineApple Computers</a>  
+    </div>
+    </div>
+
+    <nav>
+      <ul class="nav-links">
+        <li><a class="nav-link" href="prodpage.php">PRODUCTS</a></li>
+
+        <li><a class="nav-link" href="about_us.php">ABOUT US</a></li>
+
+        <li><a class="nav-link" href="contact_us.php">CONTACT</a></li>
+        
+        
+        <?php
+        if(isset($_SESSION['usrname'])){ ?>
+    <div class="drp1">
+    <li class="shub"><a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" style="text-decoration: none; color: white;"><?php echo "Welcome ".$_SESSION['usrname']; ?><span class="caret"></span></a>
+      <ul class="dropdown-menu"  style=" z-index: 10000; text-decoration: none; color: white; position: absolute; top: 100%; right: 0;">
+          <li>
+            <li><a class="dropdown-item" href="./includes/logout.inc.php">Logout</a></li>
+          </li>
+          </div>
+          <?php
+        }
+          else
+          {
+
+          ?>
+        <li><a class="nav-link" href="login.php">LOGIN</a></li> ;
+        <?php      
+        }
+        
+        ?>
+      </ul>
+    </li>
+    </nav>
+    <div class="cart">
+      <a class="cart" href="cart_sample.php">
+        <img src="./img/c.png" class="cart-bot" alt="Cart" width="40" height="40" />
+      </a>
+    </div>
+  </header>
+</nav>
+ 
+<div class="container1">
+<?php
+    if($num>0){
+        while ($product = mysqli_fetch_array($queryfire)){
+          ?>
+<div class="card">
+  <div class="card-img">
+    <img src="./img/<?php print_r($product['prod_img']);?>" alt="Avatar">
+  </div>
+  <div class="card-container">
+    <h3 style="text-align: center;"><b><?php print_r($product['name']);?></b></h3>
+    <h3 class="btn-text">Price:Rs.<?php print_r($product['price']);?></h3><a href="add_to_cart.php?id=<?php print_r($product['id'])?>"><input style="float:right; width: 100px; margin: 5px;" type="submit" value="Add to Cart"></a><a href="Prod.php?id=<?php print_r($product['id'])?>"><input style="float:right; width: 100px; margin: 5px;" type="submit" value="Know More"></a></h4>
+  </div>
+</div>   
+
+<?php
+        }
+    }
+    else{
+?>
+      <h1 style="text-align: center; width:100%;">No items in this category</h1>
+<?php
+    }
+?>
+</div>
+<?php
+
+?>
+</body>
+  <p style="text-align: center;">
+      Copyright @ 2019, PineApple Computers. All rights reserved.
+  </p>
+</html>
